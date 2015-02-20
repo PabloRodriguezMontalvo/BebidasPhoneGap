@@ -1,0 +1,35 @@
+<ion-view title="Bebidas">
+    <ion-content>
+        <div class="list">
+
+            <label class="item item-input">
+                <input type="text" placeholder="Nombre"
+                       ng-model="bebida.nombre">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Precio"
+                       ng-model="bebida.precio"
+                        >
+            </label>
+            <label class="item">
+                <button class="button button-block button-positive"
+                        ng-click="registrar()"
+                        >
+                    Nueva bebida
+                </button>
+
+            </label>
+
+            <label class="item">
+                <button class="button button-block button-positive"
+                       ui-sref="bebidas.busqueda"
+                        >
+                   Buscar bebida
+                </button>
+
+            </label>
+        </div>
+
+    </ion-content>
+
+</ion-view>
