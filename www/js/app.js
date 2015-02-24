@@ -50,7 +50,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                   controller: 'BebidasCtrl'
               }
           }
-      });
+      })
+      .state('bebidas.busquedaPrecio', {
+          url: '/busquedaPrecio',
+          views: {
+              'VistaBebidas': {
+                  templateUrl: 'templates/busquedaPrecio.html',
+                  controller: 'BebidasBusquedaPrecioCtrl'
+              }
+          }
+      })
+      .state('bebidas.busquedaPrecioDetalle', {
+          url: '/busquedaPrecioDetalle/:idBebida',
+          views: {
+              'VistaBebidas': {
+                  templateUrl: 'templates/busquedaPrecioDetalle.html',
+                  controller: 'BebidasBusquedaPrecioDetalleCtrl'
+              }
+          }
+      })
+
+  ;
 
 
 

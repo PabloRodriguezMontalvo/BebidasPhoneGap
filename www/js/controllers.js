@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('BebidasCtrl', function($scope,$ionicLoading,$ionicPopup,
+.controller('BebidasCtrl', function($scope,$state,$ionicLoading,$ionicPopup,
                                     Bebidas) {
 
         $scope.bebida={};
@@ -33,6 +33,12 @@ angular.module('starter.controllers', [])
            );
         };
 
+        $scope.buscarPrecio=function(){
+
+            Bebidas.setBusquedaPrecio($scope.bebida.busqueda);
+            $state.go('bebidas.busquedaPrecio');
+
+        };
         $scope.buscar=function(){
 
             $ionicLoading.show(
@@ -81,4 +87,42 @@ angular.module('starter.controllers', [])
 
 
 
-    });
+    })
+    .controller('BebidasBusquedaPrecioCtrl',
+                        function($scope,$stateParams,
+                                        Bebidas) {
+
+        $scope.bebidas=[];
+
+        Bebidas.busquedaPrecio(Bebidas.getBusquedaPrecio()).then(
+            function(res){
+
+                $scope.bebidas=res;
+            },
+            function(err){
+                alert(err);
+
+            }
+        );
+
+    })
+    .controller('BebidasBusquedaPrecioDetalleCtrl',
+    function($scope,$stateParams,
+             Bebidas) {
+
+        $scope.bebida={};
+
+        Bebidas.detalle($stateParams.idBebida).then(
+            function(res){
+                if(res.length>0)
+                    $scope.bebida=res[0];
+            },
+            function(err){
+                alert(err);
+
+            }
+        );
+
+    })
+
+;

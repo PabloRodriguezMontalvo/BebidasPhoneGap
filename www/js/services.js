@@ -1,9 +1,18 @@
 angular.module('starter.services', [])
 
 .factory('Bebidas', function($http,$q) {
-        var url="https://ejerciciospg.azure-mobile.net/tables/bebidas";
-
+        var url="https://awnotepad.azure-mobile.net/tables/bebidas";
+var busquedaPrecio=0;
   return {
+      getBusquedaPrecio:function(){
+          return busquedaPrecio;
+
+      },
+      setBusquedaPrecio:function(value){
+          busquedaPrecio=value;
+
+      },
+
     registro: function(miBebida) {
         var request=$http(
             {
@@ -19,7 +28,7 @@ angular.module('starter.services', [])
 
     },
     busqueda: function(miBebida) {
-     var query="?$filter=nombre eq '"+miBebida.nombre+"'";
+     var query="?$filter=nombre eq '"+miBebida.busqueda+"'";
 
         var request=$http(
             {
@@ -30,7 +39,31 @@ angular.module('starter.services', [])
         return request.then(ok,err);
 
 
-    }
+    },
+      busquedaPrecio:function(precio){
+          var query="?$filter=precio le "+precio;
+
+          var request=$http(
+              {
+                  url:url+query,
+                  method:'get'
+              });
+
+          return request.then(ok,err);
+
+      },
+      detalle:function(id){
+          var query="?$filter=id eq '"+id+"'";
+
+          var request=$http(
+              {
+                  url:url+query,
+                  method:'get'
+              });
+
+          return request.then(ok,err);
+
+      }
 
 
   }

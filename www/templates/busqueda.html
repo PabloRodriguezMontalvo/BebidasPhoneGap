@@ -3,14 +3,22 @@
         <div class="list">
 
             <label class="item item-input">
-                <input type="text" placeholder="Nombre"
-                       ng-model="bebida.nombre">
+                <input type="text" placeholder="Busqueda"
+                       ng-model="bebida.busqueda">
             </label>
             <label class="item">
                 <button class="button button-block button-positive"
                         ng-click="buscar()"
                         >
-                    Buscar bebida
+                    Buscar bebida por nombre
+                </button>
+
+            </label>
+            <label class="item">
+                <button class="button button-block button-positive"
+                        ng-click="buscarPrecio()"
+                        >
+                    Buscar bebida por precio
                 </button>
 
             </label>
